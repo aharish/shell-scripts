@@ -1,0 +1,9 @@
+#!/bin/bash
+
+name=$1
+email=$2
+
+git config user.name "$1"
+git config user.email "$2"
+
+echo "Set this repository to commit as $1 ($2)."
