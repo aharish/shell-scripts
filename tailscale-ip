@@ -3,5 +3,11 @@
 # Store the hostname we are copying the IP address for
 hostname=$1
 
+# If the hostname is not provided, then fetch the hostname of the current machine and set it to the hostname variable
+if [ -z "$1" ]
+then
+  hostname=$HOSTNAME
+fi
+
 # Call tailscale status, pipe the output to grep to find the line with the hostname, pipe the output to awk to select the first column, and copy to clipboard
-sudo tailscale status | grep $1 | awk '{print $1}' | tr -d '\n' | xclip -sel clip
+sudo tailscale status | grep $hostname | awk '{print $1}' | tr -d '\n' | xclip -sel clip
